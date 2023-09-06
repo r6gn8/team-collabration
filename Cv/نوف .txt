@@ -1,0 +1,56 @@
+ لبرنامج cv في لغة فلاتر:
+
+dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'CV App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: CVScreen(),
+    );
+  }
+}
+
+class CVScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('CV'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Noof',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 10),
+            Text(
+              '22',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'جرافكس',
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+هذا المثال يقوم بإنشاء تطبيق Flutter بسيط يعرض بعض المعلومات الأساسية في صفحة CV. يمكنك تخصيصه
