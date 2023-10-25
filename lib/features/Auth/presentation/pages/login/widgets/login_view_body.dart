@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fruits_market/core/constants.dart';
+import 'package:fruits_market/core/utils/size_config.dart';
+import 'package:fruits_market/core/widgets/custom_buttons.dart';
+import 'package:fruits_market/core/widgets/space_widget.dart';
+import 'package:fruits_market/features/Auth/presentation/pages/complete_information/complete_information_view.dart';
 import 'package:get/get.dart';
-
-import '../../../../../../core/constants.dart';
-import '../../../../../../core/utils/size_config.dart';
-import '../../../../../../core/widgets/custom_button.dart';
-import '../../../../../../core/widgets/space_widget.dart';
-import '../../complete_information/complete_information_view.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class LoginViewBody extends StatelessWidget {
             ],
           ),
           textHeightBehavior:
-          TextHeightBehavior(applyHeightToFirstAscent: false),
+              TextHeightBehavior(applyHeightToFirstAscent: false),
           textAlign: TextAlign.left,
         ),
         Expanded(child: SizedBox()),
@@ -55,7 +55,7 @@ class LoginViewBody extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: CustomButtonWithIcon(
                   color: Color(0xFFdb3236),
-                 // iconData: FontAwesomeIcons.googlePlusG,
+                  iconData: FontAwesomeIcons.googlePlusG,
                   text: 'Log in with ',
                 ),
               ),
@@ -71,7 +71,7 @@ class LoginViewBody extends StatelessWidget {
                         transition: Transition.rightToLeft);
                   },
                   color: Color(0xFF4267B2),
-                // iconData: FontAwesomeIcons.facebookF,
+                  iconData: FontAwesomeIcons.facebookF,
                   text: 'Log in with ',
                 ),
               ),

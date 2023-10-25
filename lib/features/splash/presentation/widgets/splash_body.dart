@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             SizedBox(
               height: 5,
             ),
-            Text("Rose shop", style: GoogleFonts.pacifico(
+            Text("Plants shop", style: GoogleFonts.pacifico(
               fontSize: 30,
             ),
 

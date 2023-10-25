@@ -1,22 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:the_project_flutter/features/Auth/data/provider/card.dart';
-import 'package:the_project_flutter/features/Auth/presentation/pages/bay.dart';
-import 'package:the_project_flutter/features/Auth/presentation/pages/checkout.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/home.dart';
-import 'package:the_project_flutter/features/splash/presentation/widgets/splash_body.dart';
+import 'package:the_project_flutter/features/Auth/presentation/pages/login/register.dart';
 import 'package:the_project_flutter/features/splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:the_project_flutter/firebase_options.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'core/utils/ snackbar.dart';
+import 'features/Auth/presentation/pages/bay.dart';
+import 'features/Auth/presentation/pages/checkout.dart';
+import 'features/Auth/presentation/pages/details_screen.dart';
+import 'features/Auth/presentation/pages/login/login.dart';
+import 'features/Auth/presentation/pages/login/verify_email.dart';
+import 'features/Auth/presentation/pages/theme.dart';
+import 'features/on boarding/on_boarding.dart';
 
-import 'locale/locale.dart';
 
-void main() {
+Future<void> main() async {
+  await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -25,24 +35,36 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      locale:Get.deviceLocale,
-      fallbackLocale:Locale('en'),
-      translations: MyLocale(),
-      // getPages: [
-      //   GetPage(name: "/", page: () => Home())
-      // ],
+    return ChangeNotifierProvider(
+      create: (context) {return Cart();},
+      child: MaterialApp(
+        theme: Themeervice().lightTheme,
+       darkTheme: Themeervice().darkTheme,
+       themeMode: Themeervice().getThemeMode(),
+       // theme: ThemeData.dark(),
+        debugShowCheckedModeBanner: false,
+        //اتصال بالfirebase auth
+        home:
+        //SplashView(),
+        StreamBuilder(
+          stream:FirebaseAuth.instance.authStateChanges() ,
+          builder: (context, snapshot){
+            if (snapshot.connectionState == ConnectionState.waiting) {return Center(child: CircularProgressIndicator(color: Colors.white,));}
+           //حدث مشكله
+            else if (snapshot.hasError) {return showSnackBar(context, "Something went wrong");}
+          else  if(snapshot.hasData){
+           // return SplashView();
+               return VerifyEmailPage();
+              //return Home();
+
+            }else {
+              return Login();
+            }
+          },
+        ),
 
 
-      home: ChangeNotifierProvider(
-        create: (context) {return Cart();},
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Home(),
-
-
-          ),
-      ),
+        ),
     );
   }
 }

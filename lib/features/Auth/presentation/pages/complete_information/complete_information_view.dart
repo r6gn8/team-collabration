@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:fruits_market/features/Auth/presentation/pages/complete_information/widgets/complete_information_body.dart';
-import 'package:project_flutter/features/Auth/presentation/pages/complete_information/widgets/complete_information_body.dart';
+import 'package:fruits_market/features/Auth/presentation/pages/complete_information/widgets/complete_information_body.dart';
 
 class CompleteInformationView extends StatelessWidget {
   const CompleteInformationView({ Key? key }) : super(key: key);
@@ -8,9 +7,7 @@ class CompleteInformationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body : CompleteInformationBody(
-
-      ),
+      body : CompleteInformationBody(),
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/widgets/custom_button.dart';
-import '../../../../../../core/widgets/space_widget.dart';
-import 'complete_information_item.dart';
+import 'package:fruits_market/core/widgets/custom_buttons.dart';
+import 'package:fruits_market/core/widgets/custom_text_field.dart';
+import 'package:fruits_market/core/widgets/space_widget.dart';
+import 'package:fruits_market/features/Auth/presentation/pages/complete_information/widgets/complete_information_item.dart';
 
 class CompleteInformationBody extends StatelessWidget {
   const CompleteInformationBody({Key? key}) : super(key: key);

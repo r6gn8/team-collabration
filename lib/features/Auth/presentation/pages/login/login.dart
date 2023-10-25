@@ -1,27 +1,63 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:the_project_flutter/core/widgets/feild.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/home.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/login/register.dart';
 
+import '../../../../../core/utils/ snackbar.dart';
 import '../../../../../core/widgets/text.dart';
+import 'forgot_passowrd.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+   Login({super.key});
+
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController _emailController=TextEditingController();
-  TextEditingController _passwordController=TextEditingController();
+  final emaillController = TextEditingController();
+  final passworrdController = TextEditingController();
+  bool isVisable =false;
+
+  signIn() async{
+
+    showDialog(
+        context: context,
+        builder: (context){
+          return Center(
+            child: CircularProgressIndicator(
+                color: Colors.white
+            ),
+          );
+
+        });
+
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emaillController.text,
+          password: passworrdController.text,);
+
+    //  showSnackBar( context ,  "Done");
+
+    } on FirebaseAuthException catch (e) {
+
+        showSnackBar( context ,  "ERROR : ${e.code}....");
+
+    }
+
+    //stop indicator
+    Navigator.pop(context);
+  }
+
+
   @override
-  void dispose(){
+  void dispose() {
+    emaillController.dispose();
+    passworrdController.dispose();
     super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -46,17 +82,66 @@ class _LoginState extends State<Login> {
                           child: Image.asset("assets/images/Tree planted logo.png")),
                     ),
                   ),
-                  Field(controller: _emailController, hinttext: "7".tr, icon: Icons.alternate_email,),
-                    SizedBox(height: 20,),
-                  Field(controller: _passwordController, hinttext: "8".tr, icon: Icons.lock,),
+
+
+                  TextField(
+                    controller: emaillController,
+                    style:  TextStyle(color: Colors.black,fontSize: 17,fontWeight: FontWeight.bold),
+                    keyboardType: TextInputType.text,
+                    obscureText: false,
+                    decoration: decoratiomText.copyWith(hintText: "E-mail",
+                      suffixIcon: Icon(Icons.email_outlined,color: Colors.black),
+                    ),
+                  ),
+
+                  const  SizedBox(height: 33),
+
+                  TextField(
+                    controller: passworrdController,
+                    style:  TextStyle(color: Colors.black,fontSize: 17,fontWeight: FontWeight.bold),
+                    keyboardType: TextInputType.text,
+                    obscureText: isVisable? false : true,
+                    decoration: decoratiomText.copyWith(hintText: "Password",
+                      suffixIcon: IconButton(
+                        onPressed :(){
+                          setState(() {
+                            isVisable = !isVisable;
+                          });
+                        },
+                        icon: isVisable? Icon(Icons.visibility) : Icon(Icons.visibility_off),color: Colors.black,
+                      ),
+
+                    ),
+                  ),
+
+
+
+
                   const  SizedBox(height: 25,),
-                  Center(child: TextUtil(text: "9".tr,color: Colors.white,weight: true,size: 14,)),
+                 TextButton(
+                     onPressed: (){
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => ForgotPassword()),
+                       );
+
+                     },
+                     child: Text("Forget Password?",
+                     style: TextStyle(
+                       fontSize: 18,
+                         color: Colors.white,
+                         decoration: TextDecoration.underline
+                     )
+                     ),
+                 ),
+
                   const  SizedBox(height: 25,),
                   GestureDetector(
-                    onTap: (){
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>  Home()));
+                    onTap: () async{
+                     FocusManager.instance.primaryFocus?.unfocus();
+                    await  signIn();
                     },
+
                     child: Container(
                       height: 50,
                       width: double.infinity,
@@ -65,16 +150,17 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(15)
                       ),
                       alignment: Alignment.center,
-                      child: TextUtil(text: "10".tr,weight: true,color: Colors.white,size: 16,),
+                      child: TextUtil(text: "Log in",weight: true,color: Colors.white,size: 16,),
                     ),
                   ),
+
                   const  SizedBox(height: 25,),
                   RichText(
                     text: TextSpan(
-                      text: '11'.tr,
+                      text: 'Not a member? ',
                       style:  TextStyle(color: Colors.white,fontSize: 14),
                       children:  <TextSpan>[
-                        TextSpan(text: '12'.tr, style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),recognizer: TapGestureRecognizer()..onTap=(){
+                        TextSpan(text: 'Join now', style: TextStyle(fontWeight: FontWeight.bold,decoration: TextDecoration.underline),recognizer: TapGestureRecognizer()..onTap=(){
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(builder: (context) => Register()),

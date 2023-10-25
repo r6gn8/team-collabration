@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import '../../../../../../core/widgets/space_widget.dart';
+import 'package:fruits_market/core/widgets/custom_text_field.dart';
+import 'package:fruits_market/core/widgets/space_widget.dart';
 
 class CompleteInfoItem extends StatelessWidget {
   const CompleteInfoItem({Key? key, required this.text, this.inputType, this.maxLines})
@@ -22,11 +23,14 @@ class CompleteInfoItem extends StatelessWidget {
             height: 1.5625,
           ),
           textHeightBehavior:
-          TextHeightBehavior(applyHeightToFirstAscent: false),
+              TextHeightBehavior(applyHeightToFirstAscent: false),
           textAlign: TextAlign.center,
         ),
         VerticalSpace(2),
-
+        CustomTextFormField(
+          maxLines: maxLines,
+          inputType: inputType,
+        )
       ],
     );
   }

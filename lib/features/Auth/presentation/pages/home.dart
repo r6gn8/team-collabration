@@ -1,5 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:the_project_flutter/core/utils/appbar.dart';
 import 'package:the_project_flutter/core/utils/colors.dart';
@@ -8,6 +8,8 @@ import 'package:the_project_flutter/features/Auth/domain/model/item.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/bay.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/details_screen.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/login/login.dart';
+import 'package:the_project_flutter/features/Auth/presentation/pages/profile.dart';
+import 'package:the_project_flutter/features/Auth/presentation/pages/theme.dart';
 import 'checkout.dart';
 
 
@@ -59,7 +61,9 @@ class Home extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text("3".tr, style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+                                  Text("flower",
+
+                                    style: TextStyle(color: Colors.black),
                                   ),
                                IconButton(
                                         color: Color.fromARGB(255, 62, 94, 70),
@@ -98,7 +102,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                      title: Text("1".tr),
+                      title: Text("Home"),
                       leading: Icon(Icons.home,color: appbarGreen,),
                       onTap: () {
                         Navigator.push(
@@ -109,7 +113,7 @@ class Home extends StatelessWidget {
 
 
                   ListTile(
-                      title: Text("4".tr),
+                      title: Text("My products"),
                       leading: Icon(Icons.add_shopping_cart,color: appbarGreen),
                       onTap: () {
                         Navigator.push(
@@ -119,7 +123,7 @@ class Home extends StatelessWidget {
                   ),
 
                   ListTile(
-                      title: Text("2".tr),
+                      title: Text("Paying Off"),
                       leading: Icon(Icons.payment,color: appbarGreen),
                       onTap: () {
                         Navigator.push(
@@ -128,27 +132,46 @@ class Home extends StatelessWidget {
 
                       }
                   ),
+                  //
+                  // ListTile(
+                  //     title: Text("Profile Page"),
+                  //     leading: Icon(Icons.help_center,color: appbarGreen),
+                  //     onTap: () {
+                  //       Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(builder: (context) => ProfilePage()),);
+                  //
+                  //     }
+                  // ),
+
 
                   ListTile(
-                      title: Text("5".tr),
+                      title: Text("Logout"),
                       leading: Icon(Icons.exit_to_app,color: appbarGreen),
                       onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => Login()),);
+                         FirebaseAuth.instance.signOut();
                       }
                   ),
                 ],
               ),
 
             ),
+
             appBar: AppBar(
               backgroundColor: Color.fromARGB(255, 76, 141, 95),
-              title: Text("1".tr),
+              title: Text("Home"),
               actions: [
 
-                ProductPrice()
+                ProductPrice(),
 
+
+                IconButton(
+                  icon: Icon(Icons.shield_moon),
+                    onPressed: (){
+                      Themeervice().changeTheme();
+                    },
+
+                ),
 
                 ],
 
