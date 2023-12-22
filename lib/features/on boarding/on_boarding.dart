@@ -29,7 +29,7 @@ class _OnbordingState extends State<Onbording> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 76, 141, 95),
+    //  backgroundColor: Color.fromARGB(255, 76, 141, 95),
 
       body: Column(
         children: [

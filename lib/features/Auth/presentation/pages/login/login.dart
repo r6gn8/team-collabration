@@ -1,13 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_project_flutter/core/widgets/feild.dart';
+import 'package:the_project_flutter/features/Auth/data/provider/google_signin.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/home.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/login/register.dart';
 
 import '../../../../../core/utils/ snackbar.dart';
 import '../../../../../core/widgets/text.dart';
 import 'forgot_passowrd.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class Login extends StatefulWidget {
    Login({super.key});
@@ -61,8 +65,10 @@ class _LoginState extends State<Login> {
   }
   @override
   Widget build(BuildContext context) {
+    final googleSignInProvider = Provider.of<GoogleSignInProvider>(context);
+
     return  Scaffold(
-        backgroundColor: Color.fromARGB(255, 76, 141, 95),
+      // backgroundColor: Color.fromARGB(255, 76, 141, 95),
 
       body: SingleChildScrollView(
         child: Stack(
@@ -73,15 +79,15 @@ class _LoginState extends State<Login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(
-                    child: Hero(
-                      tag: "logo",
-                      child: SizedBox(
-                          height: 130,
-                          width: 130,
-                          child: Image.asset("assets/images/Tree planted logo.png")),
-                    ),
-                  ),
+                  // Center(
+                  //   child: Hero(
+                  //     tag: "logo",
+                  //     child: SizedBox(
+                  //         height: 130,
+                  //         width: 130,
+                  //         child: Image.asset("assets/images/Tree planted logo.png")),
+                  //   ),
+                  // ),
 
 
                   TextField(
@@ -129,7 +135,7 @@ class _LoginState extends State<Login> {
                      child: Text("Forget Password?",
                      style: TextStyle(
                        fontSize: 18,
-                         color: Colors.white,
+                         color: Colors.black,
                          decoration: TextDecoration.underline
                      )
                      ),
@@ -158,7 +164,7 @@ class _LoginState extends State<Login> {
                   RichText(
                     text: TextSpan(
                       text: 'Not a member? ',
-                      style:  TextStyle(color: Colors.white,fontSize: 14),
+                      style:  TextStyle(color: Colors.black,fontSize: 14),
                       children:  <TextSpan>[
                         TextSpan(text: 'Join now', style: TextStyle(fontWeight: FontWeight.bold,decoration: TextDecoration.underline),recognizer: TapGestureRecognizer()..onTap=(){
                           Navigator.pushReplacement(
@@ -173,23 +179,89 @@ class _LoginState extends State<Login> {
                       ],
                     ),
                   ),
-                ],
-              ),
+
+
+                  SizedBox(
+                    height: 17,
+                  ),
+                  SizedBox(
+                    width: 299,
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Divider(
+                              thickness: 0.7,
+                              color: Colors.black,
+                            )),
+                        Text(
+                          "OR",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                        Expanded(
+                            child: Divider(
+                              thickness: 0.7,
+                              color: Colors.black,
+                            )),
+                      ],
+                    ),
+                  ),
+
+
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 27),
+                    child: GestureDetector(
+                      onTap: (){
+
+                        googleSignInProvider.googlelogin() ;
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(13),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border:
+                            Border.all(color: Colors.black, width: 1)),
+                        child: SvgPicture.asset(
+                          "assets/icons/google.svg",
+                          color: Colors.black,
+                          height: 27,
+                        ),
+                      ),
+                    ),
             ),
 
-            Positioned(
-                bottom: 0,
-                child: Transform.rotate(
-                    angle: 6,
-                    child:const Icon(Icons.add_shopping_cart_outlined,size: 100,color: Colors.black12,)
-                )
-            ),
+            // Positioned(
+            //     bottom: 0,
+            //     child: Transform.rotate(
+            //         angle: 6,
+            //         child:const Icon(Icons.add_shopping_cart_outlined,size: 100,color: Colors.black12,)
+            //     )
+            // ),
 
           ],
         ),
       ),
+]
+          )
+        ),
 
-          );
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF1D1B8).withOpacity(0.7),
+        title: Text("LOGIN"),
+
+        actions: [
+
+
+
+
+        ],
+
+      ),
+
+
+
+    );
 
 
   }

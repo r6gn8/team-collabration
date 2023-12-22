@@ -36,7 +36,7 @@ class ProductPrice extends StatelessWidget {
                   ),
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                      color:  Color(0xFFC5DBB3),
+                      color:  Color(0xFFD3B190),
                       shape: BoxShape.circle)),
             ),
 

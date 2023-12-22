@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     SizeConfig().init(context);
     return  Scaffold(
 
-      backgroundColor: appbarGreen,
+     // backgroundColor: appbarGreen,
       body: ScaleTransition(
         scale: _animation,
       child: Center(

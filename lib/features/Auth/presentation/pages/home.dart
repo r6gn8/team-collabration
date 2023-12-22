@@ -7,9 +7,9 @@ import 'package:the_project_flutter/features/Auth/data/provider/card.dart';
 import 'package:the_project_flutter/features/Auth/domain/model/item.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/bay.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/details_screen.dart';
-import 'package:the_project_flutter/features/Auth/presentation/pages/login/login.dart';
-import 'package:the_project_flutter/features/Auth/presentation/pages/profile.dart';
+import 'package:the_project_flutter/features/Auth/presentation/pages/profile_page.dart';
 import 'package:the_project_flutter/features/Auth/presentation/pages/theme.dart';
+import '../../../../core/widgets/user_img.dart';
 import 'checkout.dart';
 
 
@@ -20,6 +20,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final card = Provider.of<Cart>(context);
+
+    final userr = FirebaseAuth.instance.currentUser!;
           return Scaffold(
             body:  Padding(
               padding: const EdgeInsets.only(top: 22),
@@ -57,20 +59,20 @@ class Home extends StatelessWidget {
                             ),
                             footer: Container(
                               margin: EdgeInsets.only(left: 27,right: 27),
-                              color: Color(0xFFC5DBB3).withOpacity(0.7),
+                              color: Color(0xFF0E0E0E).withOpacity(0.7),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Text("flower",
 
-                                    style: TextStyle(color: Colors.black),
+                                    style: TextStyle(color: Colors.white),
                                   ),
                                IconButton(
                                         color: Color.fromARGB(255, 62, 94, 70),
                                     onPressed: () {
                                       card.add(items[index]);
                                     },
-                                    icon: Icon(Icons.add),
+                                    icon: Icon(Icons.add,color: Colors.white,),
                                         )
 
                                 ],
@@ -88,16 +90,16 @@ class Home extends StatelessWidget {
                   UserAccountsDrawerHeader(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/images/13.jpg"),
+
+                          image: AssetImage("assets/images/User común aesthetic.jpeg"),
+
                           fit: BoxFit.cover
                       ),
                     ),
 
-                    currentAccountPicture: CircleAvatar(
-                        radius: 55,
-                        backgroundImage: AssetImage("assets/images/12.jpg")),
+                    currentAccountPicture: imgUsers(),
 
-                    accountEmail: Text("Noof.Marwan@gmail.com", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                    accountEmail: Text(userr.email!, style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
                     accountName: Text("Noof Marwan", style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)
                     ),
                   ),
@@ -132,46 +134,46 @@ class Home extends StatelessWidget {
 
                       }
                   ),
-                  //
-                  // ListTile(
-                  //     title: Text("Profile Page"),
-                  //     leading: Icon(Icons.help_center,color: appbarGreen),
-                  //     onTap: () {
-                  //       Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(builder: (context) => ProfilePage()),);
-                  //
-                  //     }
-                  // ),
 
+
+                  ListTile(
+                      title: Text("Profile"),
+                      leading: Icon(Icons.person,color: appbarGreen),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfilePage()),);
+                      }
+                  ),
 
                   ListTile(
                       title: Text("Logout"),
                       leading: Icon(Icons.exit_to_app,color: appbarGreen),
                       onTap: () {
-                         FirebaseAuth.instance.signOut();
+                        FirebaseAuth.instance.signOut();
                       }
                   ),
+
                 ],
               ),
 
             ),
 
             appBar: AppBar(
-              backgroundColor: Color.fromARGB(255, 76, 141, 95),
+              backgroundColor: Color(0xFFF1D1B8).withOpacity(0.7),
               title: Text("Home"),
               actions: [
 
                 ProductPrice(),
 
 
-                IconButton(
-                  icon: Icon(Icons.shield_moon),
-                    onPressed: (){
-                      Themeervice().changeTheme();
-                    },
-
-                ),
+                // IconButton(
+                //   icon: Icon(Icons.shield_moon),
+                //     onPressed: (){
+                //       Themeervice().changeTheme();
+                //     },
+                //
+                // ),
 
                 ],
 

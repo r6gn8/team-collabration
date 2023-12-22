@@ -51,11 +51,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   sendVerificationEmail() async {
     try {
-     //await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
       setState(() {
         canResendEmail = false;
       });
-      await Future.delayed(Duration(seconds: 5));
+      //await Future.delayed(Duration(seconds: 5));
       setState(() {
         canResendEmail = true;
       });

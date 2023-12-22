@@ -11,7 +11,7 @@ const decoratiomText = InputDecoration(
   focusedBorder:   UnderlineInputBorder(
     borderSide:  BorderSide(color: Colors.black, width: 1.0),
   ),
-  hintStyle: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.w500),
+  hintStyle: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w500),
   prefixIcon:Padding(
     padding: const EdgeInsets.only(right: 10),
     // child: Container(

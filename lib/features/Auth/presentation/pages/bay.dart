@@ -28,7 +28,7 @@ class _PayStateState extends State<Pay> {
      Size size =MediaQuery.of(context).size;
     return  Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 76, 141, 95),
+        backgroundColor:Color(0xFFDCC6B5),
         title: Text("Paying Off"),
         actions: [
 
@@ -51,7 +51,7 @@ class _PayStateState extends State<Pay> {
                   height: 55,
                   decoration: BoxDecoration(
                     border: type == 1
-                        ? Border.all(width: 1,color:Color.fromARGB(255, 76, 141, 95))
+                        ? Border.all(width: 1,color:Color(0xFFDCC6B5))
                         : Border.all(width: 0.3,color: Colors.grey),
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.transparent,
@@ -70,7 +70,7 @@ class _PayStateState extends State<Pay> {
                                 value: 1,
                                 groupValue: type,
                                 onChanged: _handleRadio,
-                                activeColor: Color.fromARGB(255, 76, 141, 95),
+                                activeColor:Color(0xFFDCC6B5),
                               ),
                               Text("Amazon Pay",
                               style: type == 1? TextStyle(
@@ -103,7 +103,7 @@ class _PayStateState extends State<Pay> {
                   height: 55,
                   decoration: BoxDecoration(
                     border: type == 2
-                        ? Border.all(width: 1,color:Color.fromARGB(255, 76, 141, 95))
+                        ? Border.all(width: 1,color:Color(0xFFDCC6B5))
                         : Border.all(width: 0.3,color: Colors.grey),
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.transparent,
@@ -122,7 +122,7 @@ class _PayStateState extends State<Pay> {
                                 value: 2,
                                 groupValue: type,
                                 onChanged: _handleRadio,
-                                activeColor: Color.fromARGB(255, 76, 141, 95),
+                                activeColor: Color(0xFFDCC6B5),
                               ),
                               Text("Credit Card",
                                   style: type == 2? TextStyle(
@@ -163,7 +163,7 @@ class _PayStateState extends State<Pay> {
                   height: 55,
                   decoration: BoxDecoration(
                     border: type == 3
-                        ? Border.all(width: 1,color:Color.fromARGB(255, 76, 141, 95))
+                        ? Border.all(width: 1,color:Color(0xFFDCC6B5))
                         : Border.all(width: 0.3,color: Colors.grey),
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.transparent,
@@ -182,7 +182,7 @@ class _PayStateState extends State<Pay> {
                                 value: 3,
                                 groupValue: type,
                                 onChanged: _handleRadio,
-                                activeColor:Color.fromARGB(255, 76, 141, 95),
+                                activeColor:Color(0xFFDCC6B5),
                               ),
                               Text("Paypal",
                                   style: type == 3? TextStyle(
@@ -214,7 +214,7 @@ class _PayStateState extends State<Pay> {
                   height: 55,
                   decoration: BoxDecoration(
                     border: type == 4
-                        ? Border.all(width: 1,color: Color.fromARGB(255, 76, 141, 95))
+                        ? Border.all(width: 1,color: Color(0xFFDCC6B5))
                         : Border.all(width: 0.3,color: Colors.grey),
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.transparent,
@@ -233,7 +233,7 @@ class _PayStateState extends State<Pay> {
                                 value: 4,
                                 groupValue: type,
                                 onChanged: _handleRadio,
-                                activeColor: Color.fromARGB(255, 76, 141, 95),
+                                activeColor: Color(0xFFDCC6B5),
                               ),
                               Text("Googel Pay",
                                   style: type == 4? TextStyle(

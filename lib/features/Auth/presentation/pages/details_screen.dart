@@ -26,7 +26,7 @@ class _DetailsState extends State<Details> {
             ProductPrice()
 
           ],
-          backgroundColor: appbarGreen,
+            backgroundColor: Color(0xFFF1D1B8),
           title: Text("Details screen"),
         ),
 
@@ -63,7 +63,7 @@ class _DetailsState extends State<Details> {
                         style: TextStyle(fontSize: 15),
                       ),
                       decoration: BoxDecoration(
-                        color:Color.fromARGB(168, 3, 65, 27),
+                        color:Color(0xFFF1D1B8),
                         borderRadius: BorderRadius.circular(4),
                       )),
 
@@ -116,7 +116,7 @@ class _DetailsState extends State<Details> {
                       Icon(
                         Icons.edit_location,
                         size: 26,
-                        color: Color.fromARGB(168, 3, 65, 27),
+                        color:Color(0xFFF1D1B8),
                       ),
 
 

@@ -14,8 +14,7 @@ class CheckOut extends StatelessWidget {
     final card = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appbarGreen,
-
+          backgroundColor: Color(0xFFDCC6B5),
         title: Text("My products"),
         actions: [
           ProductPrice()
